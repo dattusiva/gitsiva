@@ -1,18 +1,15 @@
-name: Upload CHANGELOG to S3
+name: Upload to S3
 
-on:
-  push:
-    branches:
-      - master
+on: [pull_request]
 
 jobs:
-  deploy:
+  upload:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - uses: qoqa/action-s3-cp@v1.1
-        env:
-          AWS_S3_BUCKET: ${{ secrets.CHANGELOG_AWS_S3_BUCKET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.CHANGELOG_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.CHANGELOG_AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'eu-west-1'
+      - uses: shallwefootball/s3-upload-action@master
+        with:
+          aws_key_id: ${{ secrets.AWS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: ${{ secrets.AWS_BUCKET }}
+          source_dir: 'public'
