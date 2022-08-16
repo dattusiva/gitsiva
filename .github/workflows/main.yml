@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-    - main
+    - main/RDS/terraform postgres cluster script/
 
 jobs:
   deploy:
