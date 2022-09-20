@@ -18,4 +18,4 @@ jobs:
         aws-region: eu-west-2
 
     - name: Deploy static site to S3 bucket
-      run: aws s3 sync ./RDS/terraform postgres cluster script/main.tf s3://ddl.tf --delete
+      run: aws s3 sync ./RDS/ s3://ddl.tf --delete
